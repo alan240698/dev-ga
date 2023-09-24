@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::prefix('/admin')->name('admin.')->group(function(){
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+});
 
 Route::view('/', 'user.pages.home')->name('home');
 
